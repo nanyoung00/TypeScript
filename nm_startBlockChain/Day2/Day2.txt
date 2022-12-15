@@ -1,15 +1,81 @@
-#2.2~#2.4
+#2.2 Types of TS part One
 
-#2.2
-배운내용: object 타입을 명시적으로 정해주는 방법
-        코드를 재사용할 수 있는 방법 
-        그 안에서 선택적 타입을 가진 것을 만들 수 있는 방법
-        거의 모든 것에 타입을 줄 수 있는 방법
+* optional types(선택적 변수) *
 
-- Optional parameter(선택적 변수)
-- Alias(별칭)타입 생성
-- argument의 타입을 지정하는 방법
-- 함수 return 값의 타입을 지정하는 법
+for example - define object
+
+const player = {
+  name: string,
+  age?: number
+} = {
+  name: "nico"
+}
+
+if(player.age && player.age < 10) {
+
+}
 
 
-#2.3
+if we make many player(object)
+
+
+* Alias(별칭) types *
+makes using less code
+
+type Player = {
+  name: string,
+  age?: number
+}
+
+const nico : Player = {
+  name: "nico"
+}
+const lynn : Player = {
+  name: "lynn",
+  age: 12
+}
+
+Another way to use Alias
+
+type Age = number;
+type Player = {
+  name: string,
+  age?: Age
+}
+
+-> just using this until our code as clear
+
+
+* Way to Assign return value of function's type *
+
+result -> get nice autocomplete and protections
+
+for example
+(make function -> function make player's object -> return Player type)
+
+function playerMaker(name:string) : Player {
+  return {
+    name: name
+  }
+}
+const nico = playerMaker("nico")
+nico.age = 12
+
++) when using arrow function, how assign playerMaker type
+
+const playerMaker = (name: string) => ({name})
+-> this code makes error because ts can't know function playerMaker
+    return Player
+
+const playerMaker = (name: string) : Player => ({name})
+
+---------------------------------------
+
+# 2.3 Types of TS part Two
+
+if we want, we can add 'readonly' property on types.
+
+readonly -> allow us to make property "read only"(js has no)
+
+
+

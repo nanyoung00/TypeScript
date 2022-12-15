@@ -23,9 +23,4 @@ let b : boolean = false
 
 = first is better way
 
----------------------------------------
-
-#2.2 Types of TS part One
-
-optional types
 
