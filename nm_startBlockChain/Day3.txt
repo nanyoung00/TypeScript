@@ -1,0 +1,132 @@
+# 2.4 Types of TS part Three
+
+Most important thing in TS is TS communicate with Type checker
+
+* unknown *
+
+when we use "unknown", we get some protection by TS.
+if we do some work, first we have to check this variable's type.
+
+let a: unknown;
+if(typeof a ==== 'number) {
+    let b = a + 1
+}
+if(typeof a === "string") {
+    let b = a.toUpperCase();
+}
+
+
+* void *
+
+void target the function that return nothing
+we don't have to set something.
+
+ex)
+function hello() {
+    console.log('x')
+}
+const a = hello();
+a.toUpperCase(); ->this make error : Property 'toUpperCase' does not exist on type 'void' (because void is empty)
+
+
+* never *
+
+never has occured when the function never return
+for example when a function has exception
+
+and when two types exist situation
+
+function hello(name:string|number) {
+    if(typeof name === "string") {
+        name -> string
+    } else if (typeof name === "number") {
+        name -> number
+    } else {
+        name -> never ( should never run)
+    }
+}
+
+---------------------------------------
+
+# 3.0 Call signatures
+
+function add(a:number, b:number) { -> c.s: function add(a:number, b:number): number
+    return a+b
+}
+
+using arrow function
+
+const add = (a:number, b:number) => a+b
+
+call signature -> when we put on mouse, can see it
+that tell me return type of the function
+
+is not tell how the function implemented
+tell argument type + return type of the function
+
+ex)
+type Add = (a:number, b:number) => number;
+
+const add: Add = (a,b) => a+b;
+
+---------------------------------------
+
+# 3.1 Overloading
+
+Overloading is used when we get other libraries or packages
+
+ex)
+like this
+type Add = {
+    (a: number, b: number) : number
+}
+
+- when a function has multiple(different) call signatures -> occur Overloading
+
+type Add = {
+    (a: number, b: number) : number
+    (a: number, b: string) : number
+}
+
+const add: Add = (a,b) => {
+    if(typeof b === "string") return a
+    return a + b
+}
+
+-> this is just example to know about Overloading's core.
+
+ex)
+
+type Config = {
+    path: string,
+    state: object
+}
+
+type Push = {
+    (path: string) : void
+    (config: Config) : void
+}
+
+const push: Push = (config) => {
+    if(typeof config === "string") {console.log(config)}
+    else {
+        console.log(config.path, config.state)
+    }
+}
+
+-> this case will stick out in our project
+
+type Add = {
+    (a:number, b:number) : number
+    (a:number, b:number, c:number) : number,
+}
+
+const add: Add = (a,b,c?:number) => {
+    if(c) return a+b+c
+    return a+b
+}
+
+add(1,2)
+add(1,2,3)
+
+-> this case is each call signature has different number of parameter.

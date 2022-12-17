@@ -73,9 +73,51 @@ const playerMaker = (name: string) : Player => ({name})
 
 # 2.3 Types of TS part Two
 
-if we want, we can add 'readonly' property on types.
+* if we want, we can add 'readonly' property on types. *
 
 readonly -> allow us to make property "read only"(js has no)
 
+for example : string[]
+
+const names: readonly string[] = ["1","2"]
+names.push()
+
+-> we can get immutability. 
+
+
+* Tuple *
+
+-> can create array, need to get a minimum length, and then get specific type in specific location 
+
+for example
+
+["nico", 12, false] ( just array ex )
+
+const player: [string, number, boolean] = ["nico", 1, true]
+
+-> remember, when we use this, we can assign array what should always get setted the number of properties.
+        and get types in the order that we want
+        sometiems API give us like that
+
+player[0] = 1 // error because it is not string
+
++) readonly plus tuple
+
+const player: readonly [string, number, boolean] = ["nico", 1, true]
+player[0] = "hi" // error because of readonly
+
+
+* Any *
+
+when we use empty value, default becomes "any"
+any -> type, when we want to escape from ts
+(if want to escape from readonly)
+because any can be any type
+
+There are some rules for stop by using any 
+
+example
+const a : any[] = [1,2,3,4]
+remove : any[]
 
 
