@@ -3,4 +3,4 @@ TypeScript practice file collection
 
 --------------------------
 
-- Nomad coder BlockChain Making for TypeScript
+- Simple Block chain for TS
