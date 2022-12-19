@@ -1,5 +1,5 @@
 # TypeScript
-TypeScript practice file collection
+TypeScript practice project collection
 
 --------------------------
 
